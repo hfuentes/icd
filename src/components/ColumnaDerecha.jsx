@@ -30,7 +30,7 @@ const ColumnaDerecha = ({ isCollapsed, token, urn, selectedIds, onCameraChange, 
     useEffect(() => {
       const obtenerUsuarioProyecto = async () => {
         try {
-          const response = await fetch('http://localhost:3001/api/getUserProyectId', {
+          const response = await fetch('/api/getUserProyectId', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

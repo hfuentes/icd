@@ -126,7 +126,7 @@ const TabComponent = ({ urnBuscada }) => {
                 console.log("URN BUSCADA 12");
                 console.log(urnBuscada);
                 if (urnBuscada) {
-                    const response = await axios.get(`http://localhost:3001/api/filtrosPorUrn/${urnBuscada}`);
+                    const response = await axios.get(`/api/filtrosPorUrn/${urnBuscada}`);
                     console.log("Respuesta Filtros");
                     console.log(response.data);
                     const filtros = response.data;

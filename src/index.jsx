@@ -13,7 +13,7 @@ const RootComponent = () => {
     const [token, setToken] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/gettoken')
+        fetch('/api/gettoken')
             .then(response => response.json())
             .then(data => {
                 setToken(data.token);

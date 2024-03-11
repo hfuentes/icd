@@ -30,9 +30,9 @@ class Viewer extends React.Component {
             console.log("URN ANTES DE AXIOS");
             console.log(this.props);
 
-            const response1 = await axios.get(`http://localhost:3001/api/filtros`);
+            const response1 = await axios.get(`/api/filtros`);
             console.log("Respuesta Filtros88");
-          // const response = await axios.get(`http://localhost:3001/api/filtrosPorUrn/${this.props.urn}`);
+          // const response = await axios.get(`/api/filtrosPorUrn/${this.props.urn}`);
             
             console.log(response1.data);
 

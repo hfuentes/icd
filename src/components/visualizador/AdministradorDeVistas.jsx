@@ -30,7 +30,7 @@ const AdministradorDeVistas = ({ tabsRef,identificadoresActual,refViewer2 }) => 
                 };
         
                 // Realizar la solicitud HTTP para guardar la vista
-                const response = await axios.post('http://localhost:3001/api/vistasGuardadas', nuevaVista);
+                const response = await axios.post('/api/vistasGuardadas', nuevaVista);
                 if (response.status === 201) {
                     console.log('Vista guardada exitosamente:', response.data);
                     // Aquí puedes realizar cualquier acción adicional después de guardar la vista, como cerrar el modal
@@ -59,7 +59,7 @@ const AdministradorDeVistas = ({ tabsRef,identificadoresActual,refViewer2 }) => 
 
         const cargarVistasGuardadas = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/api/vistasGuardadasPorUrn/${urn}`);
+                const response = await axios.get(`/api/vistasGuardadasPorUrn/${urn}`);
                 console.log("respuestaVistas");
                 console.log(response);
                 const vistas = response.data.map(vista => ({

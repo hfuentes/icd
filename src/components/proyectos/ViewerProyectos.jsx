@@ -31,7 +31,7 @@ class ViewerProyectos extends React.Component {
     }
 
     getForgeToken = () => {
-        return fetch('http://localhost:3001/api/gettoken')
+        return fetch('/api/gettoken')
             .then(res => res.json())
             .then(data => {
                 return data.token;

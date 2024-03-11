@@ -36,7 +36,7 @@ const ListadoProyectos = ({ onProyectoSeleccionado,onProyectoKeySeleccionado }) 
   const fetchFilters = async () => {
     if (tokenVar) {
         try {
-            const response = await fetch('http://localhost:3001/api/bucketsProyectos', {
+            const response = await fetch('/api/bucketsProyectos', {
                 headers: {
                     Authorization: `${tokenVar}`
                 }
@@ -58,7 +58,7 @@ const ListadoProyectos = ({ onProyectoSeleccionado,onProyectoKeySeleccionado }) 
     const fetchToken = async () => {
       try {
         
-        const response = await fetch('http://localhost:3001/api/gettoken');
+        const response = await fetch('/api/gettoken');
         const data = await response.json();
         setToken(data.token);
       } catch (error) {
@@ -80,7 +80,7 @@ const ListadoProyectos = ({ onProyectoSeleccionado,onProyectoKeySeleccionado }) 
     onProyectoKeySeleccionado(proyectoKey);
 
     try {
-      const response = await fetch('http://localhost:3001/api/setproyectoAdmin', {
+      const response = await fetch('/api/setproyectoAdmin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -110,7 +110,7 @@ const ListadoProyectos = ({ onProyectoSeleccionado,onProyectoKeySeleccionado }) 
         console.log(bucketKey);
         console.log(objectKey);
 
-          fetch('http://localhost:3001/api/deleteObject', {
+          fetch('/api/deleteObject', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
@@ -160,7 +160,7 @@ const ListadoProyectos = ({ onProyectoSeleccionado,onProyectoKeySeleccionado }) 
     const fetchFilters = async () => {
       if (tokenVar) {
         try {
-          const response = await fetch('http://localhost:3001/api/bucketsProyectos', {
+          const response = await fetch('/api/bucketsProyectos', {
             headers: {
               Authorization: `${tokenVar}`
             }
@@ -183,7 +183,7 @@ const ListadoProyectos = ({ onProyectoSeleccionado,onProyectoKeySeleccionado }) 
   useEffect(() => {
     const obtenerUsuarioProyecto = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/getUserProyectId', {
+        const response = await fetch('/api/getUserProyectId', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -226,7 +226,7 @@ const ListadoProyectos = ({ onProyectoSeleccionado,onProyectoKeySeleccionado }) 
       formData.append('bucketKey', bucketKey); // Ajusta esto según tu lógica de obtención de la clave del bucket
 
       try {
-        const response = await fetch('http://localhost:3001/api/objects', {
+        const response = await fetch('/api/objects', {
           method: 'POST',
           body: formData,
           processData: false,
@@ -260,7 +260,7 @@ const ListadoProyectos = ({ onProyectoSeleccionado,onProyectoKeySeleccionado }) 
     console.log(bucketKey);
     console.log(objectKey);
     try {
-      const response = await fetch('http://localhost:3001/api/jobs', {
+      const response = await fetch('/api/jobs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
