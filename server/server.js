@@ -3,6 +3,8 @@ import cors from 'cors';
 import fetch from 'node-fetch';
 import multer from 'multer';
 import stream from 'stream';
+import fs from 'fs';
+import path from 'path';
 
 import { getPublicToken,getInternalToken ,getClient} from './oauth.js'; // Ruta corregida
 import forgeSDK from 'forge-apis'; // Importa todo el paquete forge-apis
@@ -270,7 +272,15 @@ app.post('/api/getUserProyectId',  obtenerUsuarioProyectoAsignadoPorIdUsuario  )
 app.post('/api/setproyectoAdmin',  actualizarUsuarioProyectoAsignadoPorIdUsuario );// buscar proyectoasignado, en caso de que no crea una colección y le ingresa la urn
 
 app.get('/', (req, res) => {
-    res.json({ message: 'We are working for you!' });
+  // if (fs.existsSync('build/index.html') !== true) {
+  //   console.log('El archivo "build/index.html" no está creado.');
+  //   return;
+  // }
+  // const options = {
+  //   root: path.join(__dirname, 'build')
+  // };
+  // res.sendFile('index.html', options);
+  res.json({ mensaje: 'funciona!' });
 });
 
 const PORT = process.env.PORT || 3001;

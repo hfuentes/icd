@@ -9,7 +9,7 @@ phases:
       - npm config set registry https://registry.npmjs.com/
   build:
     commands:
-      - npm install --omit=dev
+      - npm install
   post_build:
     commands:
       - echo Build completed on `date`
