@@ -4,8 +4,7 @@
   "type": "module",
   "scripts": {
     "start-client": "react-scripts start",
-    "start-server": "node server/server.js",
-    "start": "node node_modules/react-scripts/scripts/start.js",
+    "start": "node server/server.js",
     "build": "BUILD_PATH='./server/build' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
