@@ -1,46 +1,34 @@
 #!/bin/bash
 
-echo "Verificando si el branch es el principal..."
-if [ $(git rev-parse --abbrev-ref HEAD) == "main" ]; then
-    echo "Agregando todos los cambios..."
+deploy() {
+    echo "Adding all changes..."
     git add .
-    echo "Generando un commit..."
-    read -p "Por favor ingrese el mensaje del commit: " message
+    echo "Generating a commit..."
+    read -p "Please enter the commit message: " message
     git commit -m "$message"
-    echo "Haciendo push..."
+    echo "Pushing..."
     git push
-    echo "Cambiando al branch aws..."
+    echo "Switching to the aws branch..."
     git checkout aws
-    echo "Haciendo pull..."
+    echo "Pulling..."
     git pull
-    echo "Realizando merge con el branch principal..."
+    echo "Merging with the master branch..."
     git merge main
-    echo "Haciendo push..."
+    echo "Pushing..."
     git push
-    echo "Volviendo al branch principal..."
+    echo "Returning to the master branch..."
     git checkout main
+}
+
+echo "Verifying if the branch is master..."
+if [ $(git rev-parse --abbrev-ref HEAD) == "main" ]; then
+    deploy
 else
-    read -p "No estás en el branch principal. ¿Deseas cambiar al branch principal? (y/n): " confirm
+    read -p "You are not in the master branch. Do you want to switch to the master branch? (y/n): " confirm
     if [ "$confirm" == "y" ]; then
         git checkout main
-        echo "Agregando todos los cambios..."
-        git add .
-        echo "Generando un commit..."
-        read -p "Por favor ingrese el mensaje del commit: " message
-        git commit -m "$message"
-        echo "Haciendo push..."
-        git push
-        echo "Cambiando al branch aws..."
-        git checkout aws
-        echo "Haciendo pull..."
-        git pull
-        echo "Realizando merge con el branch principal..."
-        git merge main
-        echo "Haciendo push..."
-        git push
-        echo "Volviendo al branch principal..."
-        git checkout main
+        deploy
     else
-        echo "No se realizaron cambios. Por favor cambia al branch principal para ejecutar el script."
+        echo "No changes were made. Please switch to the master branch to run the script."
     fi
 fi
