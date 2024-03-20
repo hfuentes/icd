@@ -12,23 +12,23 @@ deploy() {
     git checkout aws
     echo "Pulling..."
     git pull
-    echo "Merging with the master branch..."
+    echo "Merging with the main branch..."
     git merge main
     echo "Pushing..."
     git push
-    echo "Returning to the master branch..."
+    echo "Returning to the main branch..."
     git checkout main
 }
 
-echo "Verifying if the branch is master..."
+echo "Verifying if the branch is main..."
 if [ $(git rev-parse --abbrev-ref HEAD) == "main" ]; then
-    deploy
-else
-    read -p "You are not in the master branch. Do you want to switch to the master branch? (y/n): " confirm
-    if [ "$confirm" == "y" ]; then
-        git checkout main
+    echo "Checking if there are changes to add to git..."
+    if [ -n "$(git status --porcelain)" ]; then
         deploy
+        echo "Deploy completed."
     else
-        echo "No changes were made. Please switch to the master branch to run the script."
+        echo "No changes were made. To run the script there must be changes."
     fi
+else
+    echo "Please switch to the main branch to run the script."
 fi
