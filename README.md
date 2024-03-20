@@ -1,6 +1,6 @@
-# ICD App 🛠️
+# ICD 🛠️
 
-## 🚀 Contenido
+## 🚀 Index
 1. [General Info](#general-info)
 2. [Local Installation](#local-installation)
 3. [AWS Configuration](#aws-configuration)
@@ -33,10 +33,15 @@ There is also an additional configuration for the NGINX server contained in the 
 To deploy to AWS you only need to merge changes to the ```aws``` branch. This process can be manual, using the following steps as an example:
 
 ```
-$ // on main branch
-$ git add . && git commit -m "chore: something" && git push
-$ git checkout aws && git merge main && git push
-$ // ...return to main branch
+on main branch
+$ git add .
+$ git commit -m "chore: something"
+$ git push
+...if everything goes fine
+$ git checkout aws && git pull
+$ git merge main
+$ git push
+...return to main branch
 ```
 
 The ```deploy.sh``` script is also available that performs the same process; the requirements are to be in the main branch and have changes to upload.
