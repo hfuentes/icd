@@ -43,9 +43,9 @@ mongoose.connect('mongodb+srv://nicolasgonzalez:q9cr9ZcS86IMzM6e@cluster0.euo83b
 
 const seedDatabase = async () => {
     // Sembrar Modelo
-   
-        await modelo.insertMany(dataModelo);
-    
+
+    await modelo.insertMany(dataModelo);
+
 
     // Sembrar Plan
     if (await plan.countDocuments() === 0) {

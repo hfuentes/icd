@@ -3,7 +3,7 @@ import ViewerProyectos from './proyectos/ViewerProyectos';
 import HeaderApp from './HeaderApp';
 import ListadoProyectos from './proyectos/ListadoProyectos';
 import AdministracionProyectos from './proyectos/AdministracionProyecto';
-
+import API_BASE_URL from '../config';
 const Proyectos = ({ token, selectedIds, onCameraChange, onSelectionChange, refViewer }) => {
     const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
     const [proyectoKeySeleccionado, setProyectoKeySeleccionado] = useState(null);
@@ -32,7 +32,7 @@ const Proyectos = ({ token, selectedIds, onCameraChange, onSelectionChange, refV
     useEffect(() => {
         const obtenerUsuarioProyecto = async () => {
           try {
-            const response = await fetch('/api/getUserProyectId', {
+            const response = await fetch(`${API_BASE_URL}/api/getUserProyectId`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ const Proyectos = ({ token, selectedIds, onCameraChange, onSelectionChange, refV
                                   onCameraChange={onCameraChange}
                                   onSelectionChange={onSelectionChange}
                                   ref={refViewer}
-                                  refViewer2={refViewer}
+                                 
 
                               />
                           </div>
