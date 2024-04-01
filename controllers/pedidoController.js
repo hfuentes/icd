@@ -1,4 +1,4 @@
-import Pedido from '../models/Pedido.js';
+import Pedido from '../models/pedido.js';
 import AdicionalesPedidos from '../models/adicionalesPedidos.js';
 // Obtener todos los registros
 
@@ -17,7 +17,7 @@ const obtenerPedido = async (req, res) => {
 const crearAdicionalPedido = async (req, res) => {
     try {
         console.log("Entro a pedidos adicionales");
-        
+
         // Extrae la información del cuerpo de la solicitud y el ID del pedido
         const { nombre_pedido, diametro, cantidad, largo, urn, pedidoId } = req.body;
 
@@ -35,7 +35,7 @@ const crearAdicionalPedido = async (req, res) => {
             urn,
             pedidoId
         });
-        console.log( nuevoAdicional);
+        console.log(nuevoAdicional);
         // Guarda el adicional en la base de datos
         await nuevoAdicional.save();
 
