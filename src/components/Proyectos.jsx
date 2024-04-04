@@ -4,6 +4,7 @@ import HeaderApp from './HeaderApp';
 import ListadoProyectos from './proyectos/ListadoProyectos';
 import AdministracionProyectos from './proyectos/AdministracionProyecto';
 import API_BASE_URL from '../config';
+import { ProyectoProvider } from '../context/ProyectoContext'; // Asegúrate de que la ruta es correcta
 const Proyectos = ({ token, selectedIds, onCameraChange, onSelectionChange, refViewer }) => {
     const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
     const [proyectoKeySeleccionado, setProyectoKeySeleccionado] = useState(null);
@@ -82,6 +83,7 @@ const Proyectos = ({ token, selectedIds, onCameraChange, onSelectionChange, refV
     return (
       <div>
       <HeaderApp proyectoKey={proyectoKeySeleccionado} />
+      <ProyectoProvider>
       <div style={estiloProyectos}>
 
           <div className='row'>
@@ -115,6 +117,7 @@ const Proyectos = ({ token, selectedIds, onCameraChange, onSelectionChange, refV
               </div>
           </div>
       </div>
+      </ProyectoProvider>
   </div>
     );
 };

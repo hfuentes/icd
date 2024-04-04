@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import fetch from 'node-fetch';
 import multer from 'multer';
 import stream from 'stream';
 
@@ -14,6 +15,9 @@ import { crearPedido, eliminarPedido, obtenerPedidos } from '../controllers/pedi
 import { actualizarUsuarioProyectoAsignadoPorIdUsuario, obtenerUsuarioProyectoAsignadoPorIdUsuario } from '../controllers/usuarioProyectoAsignadoController.js';
 import { manipularConfiguracionViewer, obtenerConfiguracionViewer } from '../controllers/ConfiguracionViewerController.js'; // Asegúrate de que la ruta sea correcta
 import { buscarCrearActualizarObjetoProyectoPlan, obtenerObjetosPorUrn, CrearObjetoProyectoPlan, obtenerPorDbIdYUrn, procesarObjetosProyectoPlanMasivamente } from '../controllers/ObjetoProyectoPlanController.js';
+import {guardarSumaPisosGeneral,obtenerRegistroPorUrn} from '../controllers/RespuestaSumaPesosController.js';
+import { insertarObjetoConDetalles, obtenerRegistroPorUrnBarras } from '../controllers/BarraUrnControlller.js';
+import {guardarActualizarRespuesta,obtenerRespuestaPorUrn} from '../controllers/SumaPesosPorDiametroController.js';
 
 import {
   crearFiltroOpcionesProyecto, crearFiltroOpcionesProyectoSiNoExiste,
@@ -25,8 +29,7 @@ import {
 } from '../controllers/FiltrosOpcionesProyectoController.js';
 import { crearAdicionalPedido, obtenerAdicionalesPorPedidoId, eliminarAdicionalPedido } from '../controllers/pedidoController.js';
 import {
-  obtenerVistasSave, obtenerVistaSave, obtenerVistasPorUrn, crearVistaSave, eliminarVistaSave
-} from '../controllers/VistasSaveController.js'; // Importar los controladores de las vistas guardadas
+  obtenerVistasSave, obtenerVistaSave,obtenerVistasPorUrn,crearVistaSave, eliminarVistaSave} from '../controllers/VistasSaveController.js'; // Importar los controladores de las vistas guardadas
 
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -293,5 +296,24 @@ app.post('/api/crearobjetoProyectoPlan', CrearObjetoProyectoPlan);
 app.get('/api/objetoProyectoPlan/:urn', obtenerObjetosPorUrn);//
 app.get('/api/objetos/:dbId/:urn', obtenerPorDbIdYUrn);
 
+// Insertar barras URN
+// 
+app.post('/api/barraurn', insertarObjetoConDetalles);
+
+// Ruta para obtener un registro por urn
+app.get('/api/barraurn/:urn', obtenerRegistroPorUrnBarras);
+
+
+// Datos Estadísticas // 
+app.post('/api/sumaTotalpiso', guardarSumaPisosGeneral);
+app.get('/api/registro/:urn', obtenerRegistroPorUrn);
+
+// Ruta para guardar o actualizar una respuesta
+app.post('/api/respuestasDiametros', guardarActualizarRespuesta);
+app.get('/api/respuestasDiametros/:urn', obtenerRespuestaPorUrn);
+
+app.get('/', (req, res) => {
+    res.json({ message: 'We are working for you!' });
+});
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
